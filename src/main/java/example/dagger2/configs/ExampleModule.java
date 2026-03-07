@@ -3,6 +3,7 @@ package example.dagger2.configs;
 import dagger.Module;
 import dagger.Provides;
 import example.dagger2.models.Kanban;
+import example.dagger2.models.SelectTask;
 import example.dagger2.models.Task;
 import jakarta.inject.Singleton;
 import org.jdbi.v3.core.Jdbi;
@@ -21,6 +22,7 @@ public class ExampleModule {
         LOG.debug("Creating Jdbi");
         return Jdbi.create("jdbc:sqlite:./kanban.db")
                 .registerRowMapper(ConstructorMapper.factory(Kanban.class))
-                .registerRowMapper(ConstructorMapper.factory(Task.class));
+                .registerRowMapper(ConstructorMapper.factory(Task.class))
+                .registerRowMapper(ConstructorMapper.factory(SelectTask.class));
     }
 }

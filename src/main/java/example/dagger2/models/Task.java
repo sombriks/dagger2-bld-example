@@ -1,4 +1,4 @@
 package example.dagger2.models;
 
-public record Task(int id, String description, State stat, Kanban kanban) {
+public record Task(int id, String description, State state, Kanban kanban) {
 }

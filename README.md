@@ -62,3 +62,7 @@ idea .
 - One key aspect when dealing with compile-time solutions like Dagger is how
   erros tend to be more present at compile-time than runtime. Reflection-heavy
   applications tends to show errors at runtime only.
+- Due to some IDE misconfiguration, annotation processing isn't regenerating the
+  classes into the directory defined in bld build. Whenever change something in
+  the `Module` or in the `Component`, recompile it with `./bld compile` to get
+  classpath sane again.

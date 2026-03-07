@@ -5,6 +5,7 @@ import dagger.internal.DoubleCheck;
 import dagger.internal.Preconditions;
 import dagger.internal.Provider;
 import example.dagger2.repositories.KanbanRepo;
+import example.dagger2.repositories.TaskRepo;
 import javax.annotation.processing.Generated;
 import org.jdbi.v3.core.Jdbi;
 
@@ -77,6 +78,11 @@ public final class DaggerExampleComponent {
     @Override
     public KanbanRepo kanbanRepo() {
       return new KanbanRepo(jdbiProvider.get());
+    }
+
+    @Override
+    public TaskRepo taskRepo() {
+      return new TaskRepo(jdbiProvider.get());
     }
   }
 }
