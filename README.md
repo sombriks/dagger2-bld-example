@@ -1,12 +1,27 @@
 # Dagger2 bld example
 
-Sample project on how to use bld to build a dagger2, javalin, jdbi and htmx  project.
+Sample project on how to use [bld][bld] to build a [dagger2][dagger2],
+[javalin][javalin], [jdbi3][jdbi3] and [htmx][htmx]  project.
+
+[bld]: https://rife2.com/bld
+[dagger2]: https://dagger.dev/
+[javalin]: https://javalin.io
+[jdbi3]: https://jdbi.org/
+[htmx]: https://htmx.org
 
 ## Base setup
 
-Install sdkman
+Install [sdkman](https://sdkman.io)
 
-Use it to install bld command line tool
+```bash
+curl -s "https://get.sdkman.io" | bash
+```
+
+Use it to install `bld` command line tool
+
+```bash
+sdk install bld
+```
 
 Create the project
 
