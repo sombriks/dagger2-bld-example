@@ -1,11 +1,11 @@
 package example.dagger2;
 
-public class Example {
-    public String getMessage() {
-        return "Hello World!";
-    }
+import example.dagger2.configs.DaggerExampleComponent;
+import example.dagger2.configs.ExampleComponent;
 
+public class Example {
     public static void main(String[] args) {
-        System.out.println(new Example().getMessage());
+        ExampleComponent exampleComponent = DaggerExampleComponent.builder().build();
+
     }
 }

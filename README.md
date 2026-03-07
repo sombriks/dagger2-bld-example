@@ -59,3 +59,6 @@ idea .
   in bld build class.
 - Do not reuse regular source directory for generated classes. Instead, define
   in build class a custom generated source folder and add it in your IDE.
+- One key aspect when dealing with compile-time solutions like Dagger is how
+  erros tend to be more present at compile-time than runtime. Reflection-heavy
+  applications tends to show errors at runtime only.
