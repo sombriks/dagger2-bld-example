@@ -69,7 +69,9 @@ public class KanbanRepo {
                         insert into kanban (name) values (:name)
                         """)
                 .bindMethods(kanban)
-                .execute());
+                .executeAndReturnGeneratedKeys()
+                .mapTo(Integer.class)
+                .first());
     }
 
     public int update(Kanban kanban) {

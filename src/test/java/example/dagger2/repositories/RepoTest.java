@@ -1,18 +1,17 @@
-package example.dagger2;
+package example.dagger2.repositories;
 
 import example.dagger2.configs.DaggerExampleComponent;
 import example.dagger2.configs.ExampleComponent;
 import example.dagger2.models.*;
-import example.dagger2.repositories.KanbanRepo;
-import example.dagger2.repositories.TaskRepo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class ExampleTest {
+public class RepoTest {
 
     private static final ExampleComponent exampleComponent = DaggerExampleComponent.builder().build();
 
@@ -29,7 +28,7 @@ public class ExampleTest {
     @Order(1)
     void shouldInsertKanban() {
         var result = kanbanRepo.insert(new InsertKanban("TEST"));
-        assertThat(result, is(1));
+        assertThat(result, not(is(0)));
     }
 
     @Test
@@ -60,7 +59,7 @@ public class ExampleTest {
         assertThat(k.isPresent(), is(true));
         var task = new InsertTask(k.get().id(), "walk the dog", State.TODO.name());
         var result = taskRepo.insert(task);
-        assertThat(result, is(1));
+        assertThat(result, not(is(0)));
     }
 
     @Test
@@ -70,7 +69,7 @@ public class ExampleTest {
         assertThat(k.isPresent(), is(true));
         var task = new InsertTask(k.get().id(), "walk the dog", State.TODO.name());
         var result = taskRepo.insert(task);
-        assertThat(result, is(1));
+        assertThat(result, not(is(0)));
         var t = taskRepo.list(k.get().id(), "walk the dog").stream().findFirst();
         assertThat(t.isPresent(), is(true));
         var task2 = t.get();

@@ -73,7 +73,9 @@ public class TaskRepo {
                         values (:kanbanId, :description, :state)
                         """)
                 .bindMethods(task)
-                .execute());
+                .executeAndReturnGeneratedKeys()
+                .mapTo(Integer.class)
+                .first());
     }
 
     public int update(UpdateTask task) {
