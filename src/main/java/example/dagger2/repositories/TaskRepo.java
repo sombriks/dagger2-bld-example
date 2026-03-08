@@ -2,6 +2,7 @@ package example.dagger2.repositories;
 
 import example.dagger2.models.InsertTask;
 import example.dagger2.models.SelectTask;
+import example.dagger2.models.UpdateTask;
 import jakarta.inject.Inject;
 import org.jdbi.v3.core.Jdbi;
 import org.slf4j.Logger;
@@ -39,9 +40,10 @@ public class TaskRepo {
                 .createQuery("""
                         select id, kanban_id, description, state
                           from task
-                         where kanban_id = :id
+                         where (:id = 0 or kanban_id = :id)
                            and lower(concat(' ',description,' '))
-                          like lower(concat('%',:q,'%')
+                          like lower(concat('%',:q,'%'))
+                      order by id;
                         """)
                 .bind("id", kanbanId)
                 .bind("q", q)
@@ -50,7 +52,18 @@ public class TaskRepo {
     }
 
     public Optional<SelectTask> get(int kanbanId, int id) {
-        return Optional.empty();
+
+        return jdbi.withHandle(handle -> handle
+                .createQuery("""
+                        select id, kanban_id, description, state
+                          from task
+                         where id = :id
+                           and kanban_id = :kanbanId;
+                        """)
+                .bind("id", id)
+                .bind("kanbanId", kanbanId)
+                .mapTo(SelectTask.class)
+                .findOne());
     }
 
     public int insert(InsertTask task) {
@@ -63,12 +76,29 @@ public class TaskRepo {
                 .execute());
     }
 
-    public int update() {
-        return 0;
+    public int update(UpdateTask task) {
+        return jdbi.withHandle(handle -> handle
+                .createUpdate("""
+                        update task
+                           set description = :description,
+                               state = :state
+                         where  id = :id
+                           and kanban_id = :kanbanId
+                        """)
+                .bindMethods(task)
+                .execute());
     }
 
-    public int delete(int id) {
-        return 0;
+    public int delete(int kanbanId, int id) {
+        return jdbi.withHandle(handle -> handle
+                .createUpdate("""
+                        delete from task
+                         where  id = :id
+                           and kanban_id = :kanbanId
+                        """)
+                .bind("id", id)
+                .bind("kanbanId", kanbanId)
+                .execute());
     }
 
 }

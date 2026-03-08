@@ -22,7 +22,6 @@ public class ExampleModule {
         LOG.debug("Creating Jdbi");
         return Jdbi.create("jdbc:sqlite:./kanban.db")
                 .registerRowMapper(ConstructorMapper.factory(Kanban.class))
-                .registerRowMapper(ConstructorMapper.factory(Task.class))
                 .registerRowMapper(ConstructorMapper.factory(SelectTask.class));
     }
 }

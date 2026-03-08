@@ -40,7 +40,7 @@ public class KanbanRepo {
                 .createQuery("""
                           select id, name
                             from kanban
-                           where lower(concat('_',name,'_'))
+                           where lower(concat(' ', name, ' '))
                             like lower(concat('%', :q, '%'))
                         order by name;
                         """)
