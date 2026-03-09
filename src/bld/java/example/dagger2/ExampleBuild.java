@@ -29,10 +29,11 @@ public class ExampleBuild extends Project {
         // dagger, javalin, jdbi, htmx, pug4j and sqlite
         scope(compile)
                 .include(dependency("com.google.dagger:dagger:2.59.2"))
-                .include(dependency("io.javalin:javalin:7.0.1"))
                 .include(dependency("org.jdbi:jdbi3-core:3.51.0"))
-                .include(dependency("org.webjars.npm:htmx.org:2.0.8"))
-                .include(dependency("de.neuland-bfi:pug4j:2.4.1"));
+                .include(dependency("io.javalin:javalin:7.0.1"))
+                .include(dependency("io.javalin:javalin-rendering:7.0.1"))
+                .include(dependency("de.neuland-bfi:pug4j:2.4.1"))
+                .include(dependency("org.webjars.npm:htmx.org:2.0.8"));
 
         scope(runtime)
                 .include(dependency("org.slf4j:slf4j-simple:2.0.17"))

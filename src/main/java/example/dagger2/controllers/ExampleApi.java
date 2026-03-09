@@ -19,6 +19,9 @@ public class ExampleApi {
         config.concurrency.useVirtualThreads = true;
         config.staticFiles.enableWebjars();
 
+//        config.fileRenderer();
+
         config.routes.get("/", ctx -> ctx.result("Hello World"));
+        config.routes.get("/test", ctx-> ctx.render("/test.pug"));
     }
 }
