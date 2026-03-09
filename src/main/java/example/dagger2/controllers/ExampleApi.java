@@ -13,12 +13,17 @@ public class ExampleApi {
 
     private final PugRenderer pugRenderer;
     private final KanbanCtl  kanbanCtl;
+    private final TaskCtl taskCtl;
 
     @Inject
-    public ExampleApi(PugRenderer pugRenderer,KanbanCtl  kanbanCtl){
+    public ExampleApi(
+            PugRenderer pugRenderer,
+            KanbanCtl  kanbanCtl,
+            TaskCtl taskCtl){
         LOG.info("ExampleApi init");
         this.pugRenderer = pugRenderer;
         this.kanbanCtl = kanbanCtl;
+        this.taskCtl = taskCtl;
     }
 
     public void configure(JavalinConfig config) {
@@ -35,6 +40,22 @@ public class ExampleApi {
             ApiBuilder.path("/api", () -> {
                 ApiBuilder.path("/kanbans", () -> {
                     ApiBuilder.get(kanbanCtl::list);
+                    ApiBuilder.post(kanbanCtl::insert);
+                    ApiBuilder.path("/{kanbanId}", () -> {
+                        ApiBuilder.get(kanbanCtl::get);
+                        ApiBuilder.put(kanbanCtl::update);
+                        ApiBuilder.delete(kanbanCtl::delete);
+                        ApiBuilder.path("/tasks", () -> {
+                            ApiBuilder.get(taskCtl::list);
+                            ApiBuilder.post(taskCtl::insert);
+                            ApiBuilder.path("/{taskId}", () -> {
+                                ApiBuilder.get(taskCtl::get);
+                                ApiBuilder.put(taskCtl::update);
+                                ApiBuilder.delete(taskCtl::delete);
+                            });
+
+                        });
+                    });
                 });
             });
         });

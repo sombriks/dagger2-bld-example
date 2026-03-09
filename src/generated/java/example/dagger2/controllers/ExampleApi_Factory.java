@@ -29,23 +29,27 @@ public final class ExampleApi_Factory implements Factory<ExampleApi> {
 
   private final Provider<KanbanCtl> kanbanCtlProvider;
 
+  private final Provider<TaskCtl> taskCtlProvider;
+
   private ExampleApi_Factory(Provider<PugRenderer> pugRendererProvider,
-      Provider<KanbanCtl> kanbanCtlProvider) {
+      Provider<KanbanCtl> kanbanCtlProvider, Provider<TaskCtl> taskCtlProvider) {
     this.pugRendererProvider = pugRendererProvider;
     this.kanbanCtlProvider = kanbanCtlProvider;
+    this.taskCtlProvider = taskCtlProvider;
   }
 
   @Override
   public ExampleApi get() {
-    return newInstance(pugRendererProvider.get(), kanbanCtlProvider.get());
+    return newInstance(pugRendererProvider.get(), kanbanCtlProvider.get(), taskCtlProvider.get());
   }
 
   public static ExampleApi_Factory create(Provider<PugRenderer> pugRendererProvider,
-      Provider<KanbanCtl> kanbanCtlProvider) {
-    return new ExampleApi_Factory(pugRendererProvider, kanbanCtlProvider);
+      Provider<KanbanCtl> kanbanCtlProvider, Provider<TaskCtl> taskCtlProvider) {
+    return new ExampleApi_Factory(pugRendererProvider, kanbanCtlProvider, taskCtlProvider);
   }
 
-  public static ExampleApi newInstance(PugRenderer pugRenderer, KanbanCtl kanbanCtl) {
-    return new ExampleApi(pugRenderer, kanbanCtl);
+  public static ExampleApi newInstance(PugRenderer pugRenderer, KanbanCtl kanbanCtl,
+      TaskCtl taskCtl) {
+    return new ExampleApi(pugRenderer, kanbanCtl, taskCtl);
   }
 }

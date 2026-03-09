@@ -29,6 +29,29 @@ public class KanbanCtl {
     }
 
     public void list(Context context) {
-        context.result("janbans");
+        LOG.debug("list");
+        String q = context.queryParam("q");
+        if (q == null) q = "";
+        var result = kanbanRepo.list(q);
+        context.json(result);
+    }
+
+    public void insert(Context context) {
+        LOG.debug("insert");
+    }
+
+    public void get(Context context) {
+        LOG.debug("get");
+        int kanbanId = context
+                .pathParamAsClass("kanbanId",Integer.class)
+                .getOrDefault(0);
+    }
+
+    public void update(Context context) {
+        LOG.debug("update");
+    }
+
+    public void delete(Context context) {
+        LOG.debug("delete");
     }
 }

@@ -20,6 +20,7 @@ public class ExampleModule {
     @Provides
     @Singleton
     public Jdbi jdbi() {
+        // TODO make it configurable
         LOG.debug("Creating Jdbi");
         return Jdbi.create("jdbc:sqlite:./kanban.db")
                 .registerRowMapper(ConstructorMapper.factory(Kanban.class))

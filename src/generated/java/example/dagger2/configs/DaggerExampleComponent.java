@@ -6,6 +6,7 @@ import dagger.internal.Preconditions;
 import dagger.internal.Provider;
 import example.dagger2.controllers.ExampleApi;
 import example.dagger2.controllers.KanbanCtl;
+import example.dagger2.controllers.TaskCtl;
 import example.dagger2.repositories.KanbanRepo;
 import example.dagger2.repositories.TaskRepo;
 import example.dagger2.services.KanbanSvc;
@@ -104,8 +105,13 @@ public final class DaggerExampleComponent {
     }
 
     @Override
+    public TaskCtl taskCtl() {
+      return new TaskCtl(taskRepo());
+    }
+
+    @Override
     public ExampleApi exampleApi() {
-      return new ExampleApi(new PugRenderer(), kanbanCtl());
+      return new ExampleApi(new PugRenderer(), kanbanCtl(), taskCtl());
     }
   }
 }

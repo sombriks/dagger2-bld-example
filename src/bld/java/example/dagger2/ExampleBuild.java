@@ -32,6 +32,7 @@ public class ExampleBuild extends Project {
                 .include(dependency("org.jdbi:jdbi3-core:3.51.0"))
                 .include(dependency("io.javalin:javalin:7.0.1"))
                 .include(dependency("io.javalin:javalin-rendering:7.0.1"))
+                .include(dependency("com.fasterxml.jackson.core:jackson-databind:2.20.1"))
                 .include(dependency("de.neuland-bfi:pug4j:2.4.1"))
                 .include(dependency("org.webjars.npm:htmx.org:2.0.8"));
 

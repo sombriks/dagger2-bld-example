@@ -22,7 +22,7 @@ public class PugRenderer implements FileRenderer {
     public PugRenderer() {
         LOG.info("PugRenderer is instantiated");
         config.setTemplateLoader(new ClasspathTemplateLoader("templates"));
-        // TODO maker it configurable
+        // TODO make it configurable
         config.setCaching(false);
     }
 
