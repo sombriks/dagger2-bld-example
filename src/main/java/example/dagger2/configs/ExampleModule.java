@@ -5,6 +5,7 @@ import dagger.Provides;
 import example.dagger2.models.Kanban;
 import example.dagger2.models.SelectTask;
 import example.dagger2.models.Task;
+import io.javalin.Javalin;
 import jakarta.inject.Singleton;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.core.mapper.reflect.ConstructorMapper;
@@ -24,4 +25,5 @@ public class ExampleModule {
                 .registerRowMapper(ConstructorMapper.factory(Kanban.class))
                 .registerRowMapper(ConstructorMapper.factory(SelectTask.class));
     }
+
 }

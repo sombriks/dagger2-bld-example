@@ -4,6 +4,7 @@ import dagger.internal.DaggerGenerated;
 import dagger.internal.DoubleCheck;
 import dagger.internal.Preconditions;
 import dagger.internal.Provider;
+import example.dagger2.controllers.ExampleApi;
 import example.dagger2.repositories.KanbanRepo;
 import example.dagger2.repositories.TaskRepo;
 import example.dagger2.services.KanbanSvc;
@@ -89,6 +90,11 @@ public final class DaggerExampleComponent {
     @Override
     public KanbanSvc kanbanSvc() {
       return new KanbanSvc(kanbanRepo(), taskRepo());
+    }
+
+    @Override
+    public ExampleApi exampleApi() {
+      return new ExampleApi();
     }
   }
 }

@@ -24,6 +24,7 @@ public class TaskRepo {
     }
 
     public void init() {
+        LOG.debug("Init");
         jdbi.useHandle(handle -> handle
                 .execute("""
                         create table if not exists task(
@@ -36,6 +37,7 @@ public class TaskRepo {
     }
 
     public List<SelectTask> list(int kanbanId, String q) {
+        LOG.debug("list");
         return jdbi.withHandle(handle -> handle
                 .createQuery("""
                         select id, kanban_id, description, state
@@ -52,7 +54,7 @@ public class TaskRepo {
     }
 
     public Optional<SelectTask> get(int kanbanId, int id) {
-
+        LOG.debug("get");
         return jdbi.withHandle(handle -> handle
                 .createQuery("""
                         select id, kanban_id, description, state
@@ -67,6 +69,7 @@ public class TaskRepo {
     }
 
     public int insert(InsertTask task) {
+        LOG.debug("insert");
         return jdbi.withHandle(handle -> handle
                 .createUpdate("""
                         insert into task (kanban_id, description, state)
@@ -79,6 +82,7 @@ public class TaskRepo {
     }
 
     public int update(UpdateTask task) {
+        LOG.debug("update");
         return jdbi.withHandle(handle -> handle
                 .createUpdate("""
                         update task
@@ -92,6 +96,7 @@ public class TaskRepo {
     }
 
     public int delete(int kanbanId, int id) {
+        LOG.debug("delete");
         return jdbi.withHandle(handle -> handle
                 .createUpdate("""
                         delete from task

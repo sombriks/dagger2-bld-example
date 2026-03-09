@@ -1,6 +1,7 @@
 package example.dagger2.configs;
 
 import dagger.Component;
+import example.dagger2.controllers.ExampleApi;
 import example.dagger2.repositories.KanbanRepo;
 import example.dagger2.repositories.TaskRepo;
 import example.dagger2.services.KanbanSvc;
@@ -19,4 +20,5 @@ public interface ExampleComponent {
 
     KanbanSvc kanbanSvc();
 
+    ExampleApi exampleApi();
 }
