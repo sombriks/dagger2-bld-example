@@ -10,7 +10,9 @@ import io.javalin.Javalin;
 public class Example {
     public static void main(String[] args) {
         ExampleComponent exampleComponent = DaggerExampleComponent.builder().build();
+
         ExampleApi exampleApi = exampleComponent.exampleApi();
+
         KanbanRepo kanbanRepo = exampleComponent.kanbanRepo();
         TaskRepo taskRepo = exampleComponent.taskRepo();
 

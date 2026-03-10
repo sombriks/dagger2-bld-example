@@ -24,13 +24,15 @@ public class TaskCtl {
         int kanbanId = context
                 .pathParamAsClass("kanbanId",Integer.class)
                 .getOrDefault(0);
-        String q = context.queryParam("q");
-        if (q == null) q = "";
+        String q = context
+                .pathParamAsClass("q", String.class)
+                .getOrDefault("");
         context.json(taskRepo.list(kanbanId, q));
     }
 
     public void insert(@NotNull Context context) {
         LOG.debug("insert");
+
     }
 
     public void get(@NotNull Context context) {

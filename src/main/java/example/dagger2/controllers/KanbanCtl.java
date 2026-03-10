@@ -5,7 +5,6 @@ import example.dagger2.repositories.TaskRepo;
 import example.dagger2.services.KanbanSvc;
 import io.javalin.http.Context;
 import jakarta.inject.Inject;
-import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,8 +29,9 @@ public class KanbanCtl {
 
     public void list(Context context) {
         LOG.debug("list");
-        String q = context.queryParam("q");
-        if (q == null) q = "";
+        String q = context
+                .pathParamAsClass("q", String.class)
+                .getOrDefault("");
         var result = kanbanRepo.list(q);
         context.json(result);
     }
@@ -43,7 +43,7 @@ public class KanbanCtl {
     public void get(Context context) {
         LOG.debug("get");
         int kanbanId = context
-                .pathParamAsClass("kanbanId",Integer.class)
+                .pathParamAsClass("kanbanId", Integer.class)
                 .getOrDefault(0);
     }
 
