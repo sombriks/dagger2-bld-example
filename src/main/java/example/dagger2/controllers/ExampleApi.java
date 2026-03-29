@@ -34,7 +34,7 @@ public class ExampleApi {
         config.fileRenderer(pugRenderer);
 
         config.routes.get("/", ctx -> ctx.result("Hello World"));
-        config.routes.get("/test", ctx-> ctx.render("/test.pug"));
+        config.routes.get("/test", ctx-> ctx.render("test.pug"));
 
         config.routes.apiBuilder(() -> {
             ApiBuilder.path("/api", () -> {

@@ -21,7 +21,7 @@ public class PugRenderer implements FileRenderer {
     @Inject
     public PugRenderer() {
         LOG.info("PugRenderer is instantiated");
-        config.setTemplateLoader(new ClasspathTemplateLoader("templates"));
+        config.setTemplateLoader(new ClasspathTemplateLoader());
         // TODO make it configurable
         config.setCaching(false);
     }
@@ -30,9 +30,9 @@ public class PugRenderer implements FileRenderer {
     @SuppressWarnings("unchecked")
     public String render(String filePath, Map<String, ?> model, Context context) {
         try {
-            PugTemplate template = config.getTemplate(filePath);
+            PugTemplate template = config.getTemplate("/resources/templates/" +filePath);
             StringWriter writer = new StringWriter();
-            config.renderTemplate(template, (Map<String, Object>) model, writer);
+            config.renderTemplate( template, (Map<String, Object>) model, writer);
             return writer.toString();
         } catch (Exception e) {
             throw new RuntimeException("Failed to render pug template: " + filePath, e);
