@@ -29,7 +29,8 @@ public class ExampleApi {
     public void configure(JavalinConfig config) {
         LOG.debug("configure");
         config.concurrency.useVirtualThreads = true;
-        config.staticFiles.enableWebjars();
+        // TODO fails with uberJar
+        // config.staticFiles.enableWebjars();
 
         config.fileRenderer(pugRenderer);
 
